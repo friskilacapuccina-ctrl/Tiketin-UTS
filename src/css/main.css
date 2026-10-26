@@ -1,0 +1,2665 @@
+/* ============================================================
+   Tiketin — main.css
+   Arah desain: Modern Travel + Playful Brand + Clean UI
+   Palet: deep navy, ocean blue, fresh teal, warm cream, soft sky
+   Selector disesuaikan dengan index.html
+   ============================================================ */
+
+/* ---------- 1. Variabel & Reset ---------- */
+:root {
+  /* Identitas warna Tiketin */
+  --navy: #142b4a;
+  --ocean: #2563eb;
+  --ocean-hover: #1d4ed8;
+  --teal: #14b8a6;
+  --teal-strong: #0d9488;
+  --cream: #fff8ef;
+  --sky: #eff6ff;
+
+  --blue-50: #eff6ff;
+  --blue-100: #dbeafe;
+  --blue-200: #bfdbfe;
+  --blue-400: #60a5fa;
+  --blue-500: #3b82f6;
+  --blue-600: var(--ocean);
+  --blue-700: var(--ocean-hover);
+  --blue-800: #1e40af;
+  --blue-900: #1e3a8a;
+
+  --white: #ffffff;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --gray-900: #0f172a;
+
+  --success: #16a34a;
+  --danger: #dc2626;
+  --warning: #f59e0b;
+  --coral: #fb7185;
+
+  /* Aksen teal / turquoise */
+  --teal-50: #f0fdfa;
+  --teal-100: #ccfbf1;
+  --teal-400: #2dd4bf;
+  --teal-500: var(--teal);
+  --teal-600: var(--teal-strong);
+
+  --bg: var(--white);
+  --bg-alt: var(--cream);
+  --surface: var(--white);
+  --text: var(--navy);
+  --text-muted: var(--gray-500);
+  --border: var(--gray-200);
+  --primary: var(--ocean);
+  --primary-hover: var(--ocean-hover);
+  --accent: var(--teal);
+  --accent-strong: var(--teal-strong);
+  --shadow-sm: 0 1px 2px rgba(20, 43, 74, 0.06);
+  --shadow-md: 0 4px 16px rgba(20, 43, 74, 0.10);
+  --shadow-lg: 0 16px 40px rgba(20, 43, 74, 0.16);
+
+  --radius-sm: 10px;
+  --radius: 14px;
+  --radius-lg: 20px;
+  --container: 1200px;
+  --nav-height: 72px;
+  --transition: 0.25s ease;
+}
+
+[data-theme="dark"] {
+  --bg: #0d1526;
+  --bg-alt: #101c33;
+  --surface: #14213a;
+  --text: #e8eefc;
+  --text-muted: #9aa9c4;
+  --border: #253353;
+  --primary: var(--blue-400);
+  --primary-hover: #93c5fd;
+  --accent: var(--teal-400);
+  --accent-strong: var(--teal-400);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.55);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+/* ---------- 2. Layout utilitas ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#mainContent {
+  flex: 1 0 auto;
+}
+
+/* ---------- 3. Tombol ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  transition: background-color var(--transition), color var(--transition),
+    border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background-image: linear-gradient(135deg, var(--ocean) 0%, #1d4ed8 100%);
+  color: var(--white);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.28);
+}
+
+.btn-primary:hover {
+  background-image: linear-gradient(135deg, var(--ocean-hover) 0%, #1e40af 100%);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] .btn-primary {
+  background-image: linear-gradient(135deg, var(--blue-400) 0%, #38bdf8 100%);
+  color: #0d1526;
+  box-shadow: 0 6px 16px rgba(96, 165, 250, 0.25);
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  background-image: linear-gradient(135deg, #93c5fd 0%, #7dd3fc 100%);
+  box-shadow: 0 8px 20px rgba(96, 165, 250, 0.32);
+}
+
+.btn-secondary {
+  background-color: var(--white);
+  color: var(--primary);
+  border-color: var(--blue-200);
+}
+
+.btn-secondary:hover {
+  background-color: var(--blue-50);
+  border-color: var(--primary);
+}
+
+[data-theme="dark"] .btn-secondary {
+  background-color: var(--gray-700);
+  color: var(--blue-400);
+  border-color: var(--gray-600);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  background-color: var(--gray-600);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--text);
+  border-color: transparent;
+}
+
+.btn-ghost:hover {
+  background-color: var(--blue-50);
+  color: var(--primary);
+}
+
+[data-theme="dark"] .btn-ghost:hover {
+  background-color: var(--gray-700);
+}
+
+.btn-danger {
+  background-color: var(--danger);
+  color: var(--white);
+  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.25);
+}
+
+.btn-danger:hover {
+  background-color: #b91c1c;
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.32);
+  transform: translateY(-1px);
+}
+
+/* ---------- 4. Navbar ---------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .navbar {
+  background-color: rgba(13, 21, 38, 0.9);
+}
+
+.navbar-container {
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.35rem;
+  color: var(--navy);
+  flex-shrink: 0;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="dark"] .logo {
+  color: var(--white);
+}
+
+.logo-icon {
+  width: 34px;
+  height: 34px;
+}
+
+.logo-accent {
+  color: var(--accent-strong);
+}
+
+.nav-menu {
+  margin-inline-start: auto;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 9px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.94rem;
+  font-weight: 500;
+  color: var(--gray-600);
+  transition: background-color var(--transition), color var(--transition);
+}
+
+[data-theme="dark"] .nav-link {
+  color: var(--gray-300);
+}
+
+.nav-link:hover {
+  color: var(--primary);
+  background-color: var(--blue-50);
+}
+
+[data-theme="dark"] .nav-link:hover {
+  background-color: var(--gray-700);
+}
+
+.nav-link.active {
+  color: var(--primary);
+  background-color: var(--blue-50);
+  font-weight: 600;
+}
+
+[data-theme="dark"] .nav-link.active {
+  background-color: rgba(59, 130, 246, 0.18);
+  color: var(--blue-400);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Ikon matahari/bulan (toggle tema) */
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+  width: 20px;
+  height: 20px;
+}
+
+.theme-toggle .icon-moon {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle .icon-sun {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle .icon-moon {
+  display: block;
+}
+
+/* Dropdown pengguna */
+.user-menu {
+  position: relative;
+}
+
+.user-btn svg,
+.mobile-menu-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 230px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
+  z-index: 120;
+}
+
+.user-dropdown.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12px;
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.user-email {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.dropdown-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 6px 0;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  color: var(--text);
+  text-align: start;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.dropdown-item svg {
+  width: 17px;
+  height: 17px;
+}
+
+.dropdown-item:hover {
+  background-color: var(--blue-50);
+  color: var(--primary);
+}
+
+[data-theme="dark"] .dropdown-item:hover {
+  background-color: var(--gray-700);
+}
+
+.btn-logout {
+  color: var(--danger);
+}
+
+.btn-logout:hover {
+  background-color: #fee2e2;
+  color: var(--danger);
+}
+
+/* Tombol menu mobile */
+.mobile-menu-btn {
+  display: none;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  transition: background-color var(--transition);
+}
+
+.mobile-menu-btn:hover {
+  background-color: var(--blue-50);
+}
+
+.mobile-menu-overlay {
+  position: fixed;
+  inset: var(--nav-height) 0 0 0;
+  background-color: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition), visibility var(--transition);
+  z-index: 99;
+}
+
+.mobile-menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(320px, 84vw);
+  height: 100%;
+  background-color: var(--surface);
+  box-shadow: var(--shadow-lg);
+  padding: 24px 20px;
+  transform: translateX(100%);
+  transition: transform var(--transition);
+  overflow-y: auto;
+}
+
+.mobile-menu-overlay.open .mobile-nav {
+  transform: translateX(0);
+}
+
+.mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 13px 16px;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  color: var(--text);
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  background-color: var(--blue-50);
+  color: var(--primary);
+}
+
+[data-theme="dark"] .mobile-nav-link:hover,
+[data-theme="dark"] .mobile-nav-link.active {
+  background-color: rgba(59, 130, 246, 0.18);
+  color: var(--blue-400);
+}
+
+/* ---------- 5. Hero ---------- */
+.hero {
+  /* Gradien tetap dipertahankan sebagai fallback bila foto gagal dimuat */
+  background: linear-gradient(135deg, var(--navy) 0%, #1d4ed8 55%, var(--teal-strong) 100%);
+  color: var(--white);
+  padding: 84px 0 150px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Foto panorama perjalanan Indonesia (lihat public/images/CREDITS.txt) */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 45%;
+  z-index: 0;
+}
+
+/* Overlay gradien agar teks di atas foto tetap kontras dan terbaca */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    105deg,
+    rgba(9, 30, 68, 0.92) 0%,
+    rgba(12, 54, 118, 0.74) 48%,
+    rgba(8, 47, 90, 0.42) 100%
+  );
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto -10% -55% -10%;
+  height: 70%;
+  background-color: var(--bg);
+  border-radius: 50% 50% 0 0;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+/* Mark logo Tiketin di hero halaman utama (img dari /images/logo-icon.svg). */
+.hero-logo {
+  display: block;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 20px;
+  border-radius: 18px;
+  filter: drop-shadow(0 10px 24px rgba(13, 21, 38, 0.4));
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2.2vw, 1.18rem);
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 30px;
+}
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Chip kategori transportasi — tombol yang membuka pencarian dengan tab aktif */
+.hero-badge {
+  background-color: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--white);
+  cursor: pointer;
+  transition: background-color var(--transition), transform var(--transition),
+    border-color var(--transition), box-shadow var(--transition);
+}
+
+.hero-badge:hover {
+  background-color: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(13, 21, 38, 0.3);
+}
+
+/* ---------- 6. Form pencarian ---------- */
+.search-section {
+  position: relative;
+  z-index: 2;
+  padding-inline: 24px;
+}
+
+/* Kartu pencarian naik menempel ke hero hanya di beranda */
+.hero + .search-section {
+  margin-top: -90px;
+}
+
+.search-card {
+  max-width: var(--container);
+  margin-inline: auto;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 24px;
+}
+
+.search-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.search-tab {
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gray-600);
+  background-color: var(--gray-100);
+  border: 1px solid transparent;
+  transition: all var(--transition);
+}
+
+.search-tab:hover {
+  color: var(--primary);
+  background-color: var(--blue-50);
+}
+
+.search-tab.active {
+  background-color: var(--primary);
+  color: var(--white);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.search-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+  gap: 14px 16px;
+  align-items: end;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg);
+  color: var(--text);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-control:hover:not(:disabled):not(:focus) {
+  border-color: var(--blue-200);
+}
+
+[data-theme="dark"] .form-control:hover:not(:disabled):not(:focus) {
+  border-color: var(--border);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--ocean);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
+}
+
+.form-control::placeholder {
+  color: var(--gray-400);
+}
+
+.form-control:disabled {
+  background-color: var(--bg-alt);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+/* ---------- Autocomplete kota -> pilihan lokasi ---------- */
+.autocomplete {
+  position: relative;
+}
+
+.autocomplete-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 40;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  max-height: 260px;
+  overflow-y: auto;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.16);
+}
+
+.autocomplete-option {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.autocomplete-option:hover {
+  background-color: var(--bg-alt);
+}
+
+.autocomplete-option.active {
+  background-color: rgba(37, 99, 235, 0.14);
+}
+
+.autocomplete-main {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.autocomplete-sub {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.autocomplete-empty {
+  padding: 9px 10px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.swap-btn {
+  justify-self: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+}
+
+.swap-btn:hover {
+  background-color: var(--primary);
+  color: var(--white);
+  transform: rotate(180deg);
+}
+
+.search-submit {
+  height: 46px;
+  padding-inline: 32px;
+  font-size: 1rem;
+}
+
+/* ---------- 7. Kartu & bagian umum ---------- */
+.section {
+  padding: 64px 0;
+}
+
+.section-alt {
+  background-color: var(--bg-alt);
+}
+
+.section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 40px;
+}
+
+.section-title {
+  font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 10px;
+  letter-spacing: -0.015em;
+}
+
+/* Garis aksen teal di bawah judul bagian */
+.section-header .section-title::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin: 12px auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--ocean), var(--teal));
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 20px;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--blue-200);
+}
+
+[data-theme="dark"] .card:hover {
+  border-color: var(--border);
+}
+
+/* Kartu manfaat (beranda): ikon + judul + deskripsi */
+.benefit-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.benefit-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  background-image: linear-gradient(135deg, var(--sky), var(--teal-50));
+  border: 1px solid var(--blue-100);
+  color: var(--ocean);
+  margin-bottom: 2px;
+}
+
+[data-theme="dark"] .benefit-icon {
+  background-image: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(20, 184, 166, 0.14));
+  border-color: var(--border);
+  color: var(--blue-400);
+}
+
+.benefit-card h3 {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.benefit-card p {
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.grid {
+  display: grid;
+  gap: 24px;
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.grid-4 {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+/* ---------- 8. Modal ---------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition), visibility var(--transition);
+  z-index: 200;
+  overflow-y: auto;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(24px) scale(0.97);
+  transition: transform var(--transition);
+  max-height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-overlay.open .modal {
+  transform: translateY(0) scale(1);
+}
+
+.modal-lg {
+  max-width: 760px;
+}
+
+.modal-sm {
+  max-width: 420px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition), color var(--transition);
+  z-index: 1;
+}
+
+.modal-close:hover {
+  background-color: var(--gray-100);
+  color: var(--danger);
+}
+
+[data-theme="dark"] .modal-close:hover {
+  background-color: var(--gray-700);
+}
+
+.modal-header {
+  padding: 22px 56px 16px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-header h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.modal-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  flex: 1 1 auto;
+}
+
+.modal-footer {
+  padding: 16px 24px 22px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Modal sukses */
+.success-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #dcfce7;
+  color: var(--success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.success-icon svg {
+  width: 34px;
+  height: 34px;
+}
+
+#successModal .modal-header {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+#successModal .modal-body {
+  text-align: center;
+}
+
+/* Logo horizontal pada modal sukses */
+.success-brand {
+  display: block;
+  height: 46px;
+  width: auto;
+  margin: 0 auto 16px;
+}
+
+/* ---------- 9. Toast ---------- */
+.toast-container {
+  position: fixed;
+  top: calc(var(--nav-height) + 16px);
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 300;
+  max-width: min(360px, calc(100vw - 40px));
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-inline-start: 4px solid var(--primary);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  padding: 14px 16px;
+  font-size: 0.92rem;
+  animation: toast-in 0.3s ease forwards;
+}
+
+.toast.toast-success {
+  border-inline-start-color: var(--success);
+}
+
+.toast.toast-error {
+  border-inline-start-color: var(--danger);
+}
+
+.toast.toast-warning {
+  border-inline-start-color: var(--warning);
+}
+
+.toast.hide {
+  animation: toast-out 0.3s ease forwards;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes toast-out {
+  to {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+}
+
+/* ---------- 10. Footer ---------- */
+.footer {
+  background: linear-gradient(180deg, var(--navy) 0%, #0f2a4d 100%);
+  color: var(--gray-300);
+  padding: 48px 0 0;
+  margin-top: auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr 1fr 1.3fr;
+  gap: 32px;
+  padding-bottom: 32px;
+}
+
+.footer .logo {
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.footer-tagline {
+  font-size: 0.9rem;
+  color: var(--gray-300);
+  max-width: 340px;
+  line-height: 1.6;
+}
+
+.footer-links h4,
+.footer-info h4 {
+  color: var(--white);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.footer-links ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.footer-links a {
+  display: inline-block;
+  padding-block: 5px;
+  font-size: 0.9rem;
+  color: var(--gray-300);
+  transition: color var(--transition);
+}
+
+.footer-links a:hover {
+  color: var(--teal-400);
+}
+
+.footer-info p {
+  font-size: 0.87rem;
+  color: var(--gray-300);
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 16px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--gray-400);
+}
+
+.footer-note {
+  font-style: italic;
+}
+
+/* ---------- 11. Status & utilitas tambahan ---------- */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background-color: var(--blue-50);
+  color: var(--primary);
+}
+
+.badge-success {
+  background-color: #dcfce7;
+  color: var(--success);
+}
+
+.badge-warning {
+  background-color: #fef3c7;
+  color: var(--warning);
+}
+
+.badge-danger {
+  background-color: #fee2e2;
+  color: var(--danger);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-1 { margin-top: 8px; }
+.mt-2 { margin-top: 16px; }
+.mt-3 { margin-top: 24px; }
+.mb-2 { margin-bottom: 16px; }
+.mb-3 { margin-bottom: 24px; }
+
+.empty-state {
+  text-align: center;
+  padding: 56px 24px;
+  color: var(--text-muted);
+}
+
+.empty-state h3 {
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+/* Petunjuk tanggal (hasil pencarian 0 -> tanggal yang punya jadwal). */
+.empty-state .empty-hint {
+  margin-top: 12px;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.loading-spinner {
+  width: 42px;
+  height: 42px;
+  margin: 48px auto;
+  border: 4px solid var(--blue-100);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- 11b. Kartu Tiket & Pesanan ---------- */
+.ticket-card {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.ticket-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ticket-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.ticket-brand svg {
+  flex-shrink: 0;
+  color: var(--accent-strong);
+}
+
+.ticket-operator {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ticket-badges {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.ticket-route {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.ticket-arrow {
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+
+.ticket-schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.9rem;
+}
+
+.ticket-date {
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  font-weight: 500;
+}
+
+.ticket-times {
+  color: var(--text);
+  font-weight: 700;
+  font-size: 1.02rem;
+  letter-spacing: 0.01em;
+}
+
+.ticket-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.ticket-seats {
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.ticket-price-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.ticket-price {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.01em;
+}
+
+.ticket-per-seat {
+  font-size: 0.76rem;
+}
+
+/* Kelompok harga + tombol pilih (footer kartu tiket) */
+.ticket-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-inline-start: auto;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.order-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px;
+}
+
+.order-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.order-code {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", monospace;
+  letter-spacing: 0.02em;
+}
+
+.order-route {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.order-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 4px 18px;
+  font-size: 0.9rem;
+}
+
+.order-details > div {
+  padding: 2px 0;
+}
+
+/* Leg pulang menempati satu baris penuh */
+.order-details > .order-leg-return {
+  grid-column: 1 / -1;
+}
+
+.order-passengers {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.9rem;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-alt);
+}
+
+[data-theme="dark"] .order-passengers {
+  background-color: rgba(37, 99, 235, 0.08);
+}
+
+.order-total {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1.05rem;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.order-total strong {
+  color: var(--primary);
+  font-weight: 800;
+}
+
+.order-cancel-btn {
+  align-self: flex-start;
+  margin-top: 4px;
+  color: var(--danger);
+  border-color: var(--border);
+  background-color: var(--surface);
+}
+
+.order-cancel-btn:hover {
+  background-color: #fee2e2;
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+[data-theme="dark"] .order-cancel-btn:hover {
+  background-color: rgba(220, 38, 38, 0.2);
+}
+
+/* Konfirmasi pembatalan (dua langkah inline) */
+.order-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.order-cancel-confirm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-sm);
+  background-color: #fef2f2;
+}
+
+[data-theme="dark"] .order-cancel-confirm {
+  border-color: rgba(220, 38, 38, 0.4);
+  background-color: rgba(220, 38, 38, 0.1);
+}
+
+.order-cancel-text {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #991b1b;
+}
+
+[data-theme="dark"] .order-cancel-text {
+  color: #fca5a5;
+}
+
+.order-cancel-yes,
+.order-cancel-no {
+  padding: 8px 16px;
+  font-size: 0.88rem;
+}
+
+.order-cancel-confirm[hidden] {
+  display: none;
+}
+
+/* Pesanan dibatalkan: tampilan kalem, status tetap terbaca */
+.order-card.cancelled .order-route,
+.order-card.cancelled .order-code {
+  color: var(--text-muted);
+}
+
+/* ---------- 11c. Kartu Destinasi Populer ---------- */
+.dest-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 992px) {
+  .dest-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .dest-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dest-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-align: start;
+  cursor: pointer;
+  /* Fallback bila gambar gagal dimuat */
+  background: linear-gradient(135deg, var(--blue-700), var(--teal-600));
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.dest-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.dest-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.35s ease;
+}
+
+.dest-card:hover .dest-img {
+  transform: scale(1.04);
+}
+
+.dest-body {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 40px 16px 14px;
+  background: linear-gradient(to top, rgba(13, 21, 38, 0.92), rgba(13, 21, 38, 0.35) 65%, rgba(13, 21, 38, 0));
+  color: var(--white);
+}
+
+.dest-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.dest-blurb {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Aksi kartu destinasi: ajakan mencari jadwal */
+.dest-cta {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #7dd3fc;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.dest-card:hover .dest-cta,
+.dest-card:focus-visible .dest-cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- 12. Responsive ---------- */
+@media (max-width: 992px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .nav-menu {
+    display: none;
+  }
+
+  .nav-actions {
+    margin-inline-start: auto;
+  }
+
+  .mobile-menu-btn {
+    display: inline-flex;
+  }
+
+  .hero {
+    padding: 64px 0 120px;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-inline: 18px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .footer-bottom {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .search-card {
+    padding: 18px;
+  }
+
+  .search-submit {
+    width: 100%;
+  }
+
+  .hero-logo {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 14px;
+  }
+
+  .modal-overlay {
+    padding: 14px;
+    align-items: flex-end;
+  }
+
+  .modal {
+    max-height: calc(100vh - 28px);
+  }
+
+  .modal-footer .btn {
+    flex: 1 1 auto;
+  }
+
+  .toast-container {
+    left: 20px;
+    right: 20px;
+    max-width: none;
+  }
+}
+
+/* Aksesibilitas: fokus terlihat & kurangi animasi */
+:focus-visible {
+  outline: 3px solid var(--blue-400);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- 14. Pemesanan khas transportasi ---------- */
+.form-group[hidden] {
+  display: none;
+}
+
+.form-caption {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.span-all {
+  grid-column: 1 / -1;
+}
+
+/* Tipe perjalanan: sekali jalan / pulang-pergi */
+.trip-type-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.trip-type-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background-color: var(--surface);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color var(--transition), background-color var(--transition);
+}
+
+.trip-type-option:hover {
+  border-color: var(--primary);
+}
+
+.trip-type-option input {
+  accent-color: var(--primary);
+  margin: 0;
+}
+
+/* Kartu tiket: lokasi rute & chip meta */
+.ticket-locations {
+  font-size: 0.82rem;
+  margin-top: -6px;
+}
+
+.ticket-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ticket-chip {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background-color: var(--blue-50);
+  color: var(--primary);
+  border: 1px solid var(--blue-100);
+}
+
+.ticket-card.selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent), var(--shadow-md);
+}
+
+.ticket-card.selected .ticket-select-btn {
+  background-color: var(--accent-strong);
+  border-color: var(--accent-strong);
+}
+
+/* Hasil pulang-pergi */
+.results-leg {
+  margin-bottom: 8px;
+}
+
+.results-leg-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 18px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.results-leg-title::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background-color: var(--accent);
+}
+
+.trip-summary-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--surface);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 6px;
+}
+
+.trip-summary-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.9rem;
+  color: var(--text);
+  min-width: 0;
+}
+
+/* Modal detail perjalanan */
+.detail-leg {
+  padding: 6px 0 14px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.detail-leg:last-of-type {
+  border-bottom: none;
+}
+
+.detail-leg-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-leg-title::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background-color: var(--accent);
+}
+
+/* Ringkasan pada form booking */
+.booking-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px;
+  border: 1px solid var(--blue-100);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius-sm);
+  background-color: var(--blue-50);
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.booking-leg {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.booking-total-group {
+  gap: 2px;
+}
+
+.booking-total {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.booking-total-note {
+  display: block;
+}
+
+/* Peta kursi bus */
+.seat-picker {
+  gap: 8px;
+}
+
+.seat-hint {
+  font-size: 0.82rem;
+  margin: 0;
+}
+
+.seat-map {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-alt);
+  width: fit-content;
+  max-width: 100%;
+}
+
+.seat-row {
+  display: grid;
+  grid-template-columns: 20px repeat(2, 42px) 16px repeat(2, 42px);
+  gap: 6px;
+  align-items: center;
+}
+
+.seat-row-label {
+  font-size: 0.72rem;
+  text-align: center;
+}
+
+.seat-aisle,
+.seat-spacer {
+  width: 16px;
+}
+
+.seat {
+  height: 38px;
+  border-radius: 10px 10px 6px 6px;
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  color: var(--text);
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.seat:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+.seat.selected {
+  background-color: var(--accent);
+  border-color: var(--accent-strong);
+  color: var(--white);
+}
+
+.seat-occupied,
+.seat-occupied:hover {
+  background-color: var(--gray-200);
+  border-color: var(--gray-300);
+  color: var(--gray-500);
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.seat-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 0.78rem;
+}
+
+.seat-legend-swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  vertical-align: -2px;
+  margin-right: 5px;
+}
+
+.swatch-free {
+  background-color: var(--surface);
+}
+
+.swatch-occupied {
+  background-color: var(--gray-200);
+}
+
+.swatch-selected {
+  background-color: var(--accent);
+  border-color: var(--accent-strong);
+}
+
+/* Riwayat pesanan: lokasi & leg pulang */
+.order-loc-line {
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+.order-leg-return {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* ---------- 15. Hasil pencarian: jumlah hasil & empty-state tanggal alternatif ---------- */
+.results-count {
+  font-size: 0.95rem;
+}
+
+/* Toolbar hasil: jumlah hasil + kontrol urutkan/filter harga yang ringkas */
+.results-toolbar {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 12px 16px;
+}
+
+.results-toolbar-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.results-toolbar .form-group {
+  flex: 1 1 150px;
+  max-width: 220px;
+}
+
+.results-toolbar .form-group label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.results-toolbar .form-control {
+  padding: 9px 12px;
+  font-size: 0.9rem;
+}
+
+.results-toolbar .search-submit {
+  height: 40px;
+  padding-inline: 22px;
+}
+
+@media (max-width: 640px) {
+  .results-toolbar .form-group {
+    max-width: none;
+    flex-basis: 100%;
+  }
+}
+
+/* Chip tanggal alternatif pada empty-state (dapat diklik untuk pencarian ulang) */
+.date-chips-block {
+  margin-top: 14px;
+}
+
+.date-chips-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+.date-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.date-chip {
+  border: 1px solid var(--primary);
+  background-color: var(--surface);
+  color: var(--primary);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition), box-shadow var(--transition);
+}
+
+.date-chip:hover,
+.date-chip:focus-visible {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.date-chip:active {
+  transform: translateY(1px);
+}
+
+/* Daftar rute lain yang tersedia (informatif — bukan hasil pencocokan) */
+.alt-routes {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border);
+}
+
+.alt-route-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.alt-route-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 9px 14px;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.alt-route-name {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.alt-route-info {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* ---------- 16. Polesan tema gelap untuk komponen berlatar terang ---------- */
+[data-theme="dark"] .badge {
+  background-color: rgba(37, 99, 235, 0.16);
+  color: var(--blue-400);
+}
+
+[data-theme="dark"] .badge-success {
+  background-color: rgba(22, 163, 74, 0.16);
+  color: #4ade80;
+}
+
+[data-theme="dark"] .badge-warning {
+  background-color: rgba(245, 158, 11, 0.16);
+  color: #fbbf24;
+}
+
+[data-theme="dark"] .badge-danger {
+  background-color: rgba(220, 38, 38, 0.16);
+  color: #f87171;
+}
+
+[data-theme="dark"] .ticket-chip {
+  background-color: rgba(37, 99, 235, 0.14);
+  border-color: rgba(96, 165, 250, 0.25);
+  color: var(--blue-400);
+}
+
+[data-theme="dark"] .booking-summary {
+  background-color: rgba(37, 99, 235, 0.1);
+  border-color: rgba(96, 165, 250, 0.25);
+}
+
+[data-theme="dark"] .seat-occupied,
+[data-theme="dark"] .seat-occupied:hover {
+  background-color: #223354;
+  border-color: #2c4066;
+  color: #7c8db0;
+}
+
+[data-theme="dark"] .swatch-occupied {
+  background-color: #223354;
+}
+
+[data-theme="dark"] .success-icon {
+  background-color: rgba(22, 163, 74, 0.16);
+}
+
+[data-theme="dark"] .btn-logout:hover {
+  background-color: rgba(220, 38, 38, 0.2);
+}
+
+[data-theme="dark"] .btn-secondary {
+  background-color: #1c2c4d;
+  color: var(--blue-400);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  background-color: #24395f;
+}
+
+[data-theme="dark"] .swap-btn {
+  background-color: var(--surface);
+}
+
+[data-theme="dark"] .date-chip {
+  background-color: var(--surface);
+}
+
+/* Responsif */
+@media (max-width: 640px) {
+  .trip-summary-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Layar sentuh: ajakan "Cari jadwal" selalu terlihat (tanpa hover) */
+  .dest-cta {
+    opacity: 1;
+    transform: none;
+  }
+
+  .seat-row {
+    grid-template-columns: 18px repeat(2, 38px) 14px repeat(2, 38px);
+  }
+}
+
+/* ---------- 17. Form pemesanan bertahap (stepper) ---------- */
+.booking-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Elemen yang menyetel display sendiri tetap hormati atribut hidden */
+.btn[hidden],
+.step-panel[hidden],
+.field-error[hidden] {
+  display: none !important;
+}
+
+/* Indikator langkah */
+.booking-stepper {
+  list-style: none;
+  display: flex;
+  margin: 0 0 18px;
+  padding: 0;
+}
+
+.booking-stepper li {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  min-width: 0;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.booking-stepper li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 13px;
+  left: calc(50% + 16px);
+  right: calc(-50% + 16px);
+  height: 2px;
+  background-color: var(--border);
+  border-radius: 2px;
+}
+
+.booking-stepper li.is-done::after {
+  background-color: var(--primary);
+}
+
+.stepper-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background-color: var(--surface);
+  border: 2px solid var(--border);
+  color: var(--text-muted);
+  z-index: 1;
+  transition: background-color var(--transition), border-color var(--transition),
+    color var(--transition), box-shadow var(--transition);
+}
+
+.booking-stepper li.is-done .stepper-dot,
+.booking-stepper li.is-active .stepper-dot {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: var(--white);
+}
+
+.booking-stepper li.is-active .stepper-dot {
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.18);
+}
+
+[data-theme="dark"] .booking-stepper li.is-active .stepper-dot {
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.2);
+}
+
+.booking-stepper li.is-active {
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* Panel per langkah */
+.step-panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px 16px;
+  align-items: start;
+  outline: none;
+}
+
+.step-title {
+  grid-column: 1 / -1;
+  font-size: 1.02rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.step-note {
+  font-size: 0.82rem;
+  margin: 0;
+}
+
+/* Validasi inline */
+.field-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  color: var(--danger);
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.field-error::before {
+  content: "!";
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: rgba(220, 38, 38, 0.12);
+  color: var(--danger);
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 14px;
+  text-align: center;
+  margin-top: 2px;
+}
+
+.form-control.is-invalid {
+  border-color: var(--danger);
+}
+
+.form-control.is-invalid:focus {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+/* Label & petunjuk bidang */
+.field-hint {
+  font-size: 0.76rem;
+}
+
+.field-tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background-color: rgba(220, 38, 38, 0.1);
+  color: var(--danger);
+  vertical-align: middle;
+}
+
+.field-tag-opt {
+  background-color: var(--gray-100);
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .field-tag-opt {
+  background-color: #1c2c4d;
+}
+
+/* Kartu penumpang dinamis */
+.pax-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pax-card {
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.pax-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.pax-card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.pax-card-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px 14px;
+}
+
+.pax-badge.pax-adult {
+  background-color: var(--blue-100);
+  color: var(--blue-800);
+}
+
+.pax-badge.pax-child {
+  background-color: var(--teal-100);
+  color: var(--teal-600);
+}
+
+[data-theme="dark"] .pax-badge.pax-adult {
+  background-color: rgba(96, 165, 250, 0.18);
+  color: var(--blue-400);
+}
+
+[data-theme="dark"] .pax-badge.pax-child {
+  background-color: rgba(45, 212, 191, 0.16);
+  color: var(--teal-400);
+}
+
+/* Kontak: kode negara + nomor telepon */
+.phone-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 150px) 1fr;
+  gap: 10px;
+}
+
+/* Informasi tambahan (buka-tutup) */
+.extra-details {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background-color: var(--surface);
+}
+
+.extra-details summary {
+  padding: 12px 14px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-radius: var(--radius-sm);
+}
+
+.extra-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.extra-details summary::after {
+  content: "+";
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.extra-details[open] summary::after {
+  content: "\2212";
+}
+
+.extra-details summary:hover {
+  background-color: var(--blue-50);
+}
+
+[data-theme="dark"] .extra-details summary:hover {
+  background-color: rgba(37, 99, 235, 0.12);
+}
+
+.extra-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 4px 14px 14px;
+}
+
+.privacy-note {
+  font-size: 0.78rem;
+  padding: 10px 12px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-alt);
+  margin: 0;
+}
+
+/* Ringkasan & konfirmasi */
+.confirm-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.confirm-block {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-alt);
+}
+
+[data-theme="dark"] .confirm-block {
+  background-color: rgba(37, 99, 235, 0.08);
+}
+
+.confirm-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin: 0 0 8px;
+}
+
+.confirm-line {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  font-size: 0.92rem;
+  padding: 4px 0;
+}
+
+.confirm-line span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.confirm-price .confirm-total {
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: var(--primary);
+  padding-top: 6px;
+}
+
+.sim-note {
+  font-size: 0.78rem;
+  margin: 0;
+}
+
+/* Navigasi langkah (menempel di bawah area modal) */
+.stepper-nav {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 18px -24px 0;
+  padding: 12px 24px 14px;
+  background-color: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.stepper-nav .btn:last-child {
+  margin-left: auto;
+}
+
+.booking-confirm-btn {
+  width: 100%;
+  padding: 13px;
+  font-size: 1rem;
+}
+
+/* Modal sukses: dua tombol aksi sejajar dengan lebar sama */
+#successModal .modal-footer .btn {
+  flex: 1 1 0;
+  min-width: 150px;
+}
+
+/* Pesanan Saya: blok kontak & catatan privasi */
+.order-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.9rem;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-alt);
+}
+
+[data-theme="dark"] .order-contact {
+  background-color: rgba(37, 99, 235, 0.08);
+}
+
+.orders-privacy-note {
+  font-size: 0.78rem;
+  margin: 14px 0 0;
+}
+
+/* Responsif form bertahap */
+@media (max-width: 640px) {
+  .booking-stepper .stepper-label {
+    font-size: 0.64rem;
+  }
+
+  .stepper-dot {
+    width: 24px;
+    height: 24px;
+    font-size: 0.72rem;
+  }
+
+  .booking-stepper li:not(:last-child)::after {
+    top: 11px;
+    left: calc(50% + 14px);
+    right: calc(-50% + 14px);
+  }
+
+  .phone-row {
+    grid-template-columns: 112px 1fr;
+  }
+
+  .pax-card-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .stepper-nav .btn {
+    flex: 1 1 auto;
+  }
+}
+

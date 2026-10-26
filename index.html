@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tiketin - Website Pemesanan Tiket Perjalanan Online">
+  <title>Tiketin | Pesan Tiket Pesawat, Kereta, & Bus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg">
+</head>
+<body>
+  <div id="app">
+    <!-- Navbar -->
+    <header class="navbar" role="banner">
+      <div class="container navbar-container">
+        <a href="#" class="logo" data-page="home" aria-label="Tiketin - Beranda">
+          <img class="logo-icon" src="%BASE_URL%images/logo-icon.svg" width="34" height="34" alt="" aria-hidden="true">
+          <span class="logo-text">Tiket<span class="logo-accent">in</span></span>
+        </a>
+        
+        <nav class="nav-menu" role="navigation" aria-label="Navigasi utama">
+          <ul class="nav-list">
+            <li><a href="#" class="nav-link active" data-page="home">Beranda</a></li>
+            <li><a href="#" class="nav-link" data-page="search">Cari Tiket</a></li>
+            <li><a href="#" class="nav-link" data-page="orders">Pesanan Saya</a></li>
+          </ul>
+        </nav>
+        
+        <div class="nav-actions">
+          <button class="btn btn-ghost theme-toggle" id="themeToggle" aria-label="Toggle mode gelap">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+          <div class="user-menu">
+            <button class="btn btn-ghost user-btn" id="userBtn" aria-label="Menu pengguna" aria-expanded="false">
+              <svg class="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </button>
+            <div class="user-dropdown" id="userDropdown" role="menu" aria-hidden="true">
+              <div class="user-info">
+                <span class="user-name">Pengguna Demo</span>
+                <span class="user-email">demo@tiketin.id</span>
+              </div>
+              <hr class="dropdown-divider">
+              <a href="#" class="dropdown-item" data-page="profile" role="menuitem">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                Profil
+              </a>
+              <a href="#" class="dropdown-item" data-page="settings" role="menuitem">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                Pengaturan
+              </a>
+              <button class="dropdown-item btn-logout" role="menuitem">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                Keluar
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Buka menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" aria-hidden="true">
+      <nav class="mobile-nav" role="navigation" aria-label="Menu mobile">
+        <ul class="mobile-nav-list">
+          <li><a href="#" class="mobile-nav-link active" data-page="home">Beranda</a></li>
+          <li><a href="#" class="mobile-nav-link" data-page="search">Cari Tiket</a></li>
+          <li><a href="#" class="mobile-nav-link" data-page="orders">Pesanan Saya</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main id="mainContent" role="main">
+      <!-- Pages will be dynamically loaded here -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo" data-page="home" aria-label="Tiketin - Beranda">
+            <img class="logo-icon" src="%BASE_URL%images/logo-icon.svg" width="32" height="32" alt="" aria-hidden="true">
+            <span class="logo-text">Tiket<span class="logo-accent">in</span></span>
+          </a>
+          <p class="footer-tagline">Simulasi pemesanan tiket pesawat, kereta api, dan bus antar kota di Indonesia — dibuat untuk tugas UTS Struktur Data.</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Layanan</h4>
+          <ul>
+            <li><a href="#" data-page="search" data-transport="plane">Pesan Tiket Pesawat</a></li>
+            <li><a href="#" data-page="search" data-transport="train">Pesan Tiket Kereta</a></li>
+            <li><a href="#" data-page="search" data-transport="bus">Pesan Tiket Bus</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Navigasi</h4>
+          <ul>
+            <li><a href="#" data-page="home">Beranda</a></li>
+            <li><a href="#" data-page="search">Cari Tiket</a></li>
+            <li><a href="#" data-page="orders">Pesanan Saya</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-info">
+          <h4>Tentang Proyek</h4>
+          <p>Pencarian tiket memakai algoritma Linear Search, pengurutan memakai Bubble Sort, dan data tiket disimpan sebagai array simulasi.</p>
+          <p class="footer-note">Harga, jadwal, dan ketersediaan adalah data simulasi, bukan penawaran nyata.</p>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>&copy; 2026 Tiketin. Dibuat untuk UTS Struktur Data.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modals -->
+  <div class="modal-overlay" id="ticketDetailModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal modal-lg">
+      <button class="modal-close" id="closeTicketModal" aria-label="Tutup detail tiket">&times;</button>
+      <div class="modal-header">
+        <h2 id="modalTitle">Detail Tiket</h2>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="modalCloseBtn">Tutup</button>
+        <button class="btn btn-primary" id="modalBookBtn">Pesan Sekarang</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle" aria-hidden="true">
+    <div class="modal modal-lg">
+      <button class="modal-close" id="closeBookingModal" aria-label="Tutup pemesanan">&times;</button>
+      <div class="modal-header">
+        <h2 id="bookingModalTitle">Pemesanan Tiket</h2>
+      </div>
+      <div class="modal-body" id="bookingModalBody"></div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="paymentModal" role="dialog" aria-modal="true" aria-labelledby="paymentModalTitle" aria-hidden="true">
+    <div class="modal">
+      <button class="modal-close" id="closePaymentModal" aria-label="Tutup pembayaran">&times;</button>
+      <div class="modal-header">
+        <h2 id="paymentModalTitle">Pembayaran</h2>
+      </div>
+      <div class="modal-body" id="paymentModalBody"></div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successModalTitle" aria-hidden="true">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <div class="success-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h2 id="successModalTitle">Pemesanan Berhasil!</h2>
+      </div>
+      <div class="modal-body" id="successModalBody"></div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="successOrdersBtn">Lihat Detail Pesanan</button>
+        <button class="btn btn-primary" id="successCloseBtn">Kembali ke Beranda</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+
+  <script type="module" src="./src/js/main.js"></script>
+</body>
+</html>

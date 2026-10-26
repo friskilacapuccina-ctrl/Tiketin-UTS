@@ -1,0 +1,38 @@
+Tiketin - Kredit Gambar (Aset Visual)
+=====================================
+Semua gambar bersumber dari galeri berlisensi bebas dan digunakan
+dengan atribusi sesuai lisensinya. Berkas disimpan dalam format WebP.
+
+1. hero-travel.webp  (kereta cepat Whoosh/KCIC400AF dengan Gunung Manglayang)
+   Judul   : KCIC400AF and Mount Manglayang
+   Pembuat : Naufal Farras (NFarras) for Transport for Bandung
+   Lisensi : CC BY-SA 4.0
+   Sumber  : https://commons.wikimedia.org/wiki/File:KCIC400AF_and_Mount_Manglayang.jpg
+
+2. bali.webp  (Pura Tanah Lot)
+   Judul   : Bali - Pura Tanah Lot, 20220827 0958 1114
+   Pembuat : Jakub Halun
+   Lisensi : CC BY-SA 4.0
+   Sumber  : https://commons.wikimedia.org/wiki/File:Bali_-_Pura_Tanah_Lot,_20220827_0958_1114.jpg
+
+3. yogyakarta.webp  (Candi Prambanan)
+   Judul   : Java ~ Hindu Temple ~ Prambanan
+   Pembuat : VasenkaPhotography
+   Lisensi : CC BY 2.0
+   Sumber  : https://www.flickr.com/photos/40774255@N07/6107665347
+
+4. bandung.webp  (Kebun teh Malabar, Bandung)
+   Judul   : DSC00469/Java West/Malabar Tea Plantation/Bandung South
+   Pembuat : dany13
+   Lisensi : CC BY 2.0
+   Sumber  : https://www.flickr.com/photos/11493299@N00/6288349433
+
+5. danau-toba.webp  (Tongging, matahari terbit di Danau Toba)
+   Judul   : Tongging
+   Pembuat : sektordua
+   Lisensi : CC BY 2.0
+   Sumber  : https://www.flickr.com/photos/60169539@N00/15378207368
+
+Konversi ke WebP dan pemotongan ukuran dilakukan lokal dengan Pillow
+(resize + penyesuaian kontras/saturasi ringan pada foto hero agar
+selaras dengan overlay gradien, tanpa mengubah komposisi foto).

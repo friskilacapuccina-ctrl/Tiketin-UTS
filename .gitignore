@@ -1,0 +1,21 @@
+node_modules/
+dist/
+
+# Local environment and secret files
+.env
+.env.*
+!.env.example
+*.local
+*.pem
+*.key
+credentials*.json
+secrets*.json
+
+# Operating system / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Generated C++ build output (keep cpp source files)
+cpp/*.obj
+cpp/*.exe
